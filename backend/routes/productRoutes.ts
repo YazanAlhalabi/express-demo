@@ -4,8 +4,8 @@ import {
   getAllProducts,
   getProduct,
 } from "../controllers/productsController.js"
-import { productIdValidation } from "../validators/productValidator.js"
-import { runValidation } from "../validators/runValidations.js"
+import { productIdValidation } from "../schema/productValidator.js"
+import { runValidation } from "../middlewares/newProductValidation.js"
 
 const router = Router()
 

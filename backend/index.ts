@@ -29,13 +29,30 @@ app.get("/", (req, res) => {
   })
 })
 
-app.get("/books", (req, res) => {
-  // Some magic happens here
-  // go to the database to get the data
-  // send the response back
+app.get(
+  "/books",
+  (req, res, next) => {
+    console.log("👀 HERE IS THE MIDDLEWARE NUMBER 1")
+    next()
+  },
+  (req, res, next) => {
+    console.log("👀 HERE IS THE MIDDLEWARE NUMBER 2")
+    next()
+  },
+  (req, res, next) => {
+    console.log("👀 HERE IS THE MIDDLEWARE NUMBER 3")
+    next()
+  },
+  (req, res) => {
+    console.log("👀 HERE IS THE CONTROLLER")
+    // Some magic happens here
+    // go to the database to get the data
+    // send the response back
 
-  res.status(200).json({ books })
-})
+    res.status(200).json({ books })
+  }
+)
+
 app.get("/books/:bookId", (req, res) => {
   const bookId = req.params.bookId
   const book = books.find((book) => book.id === Number(bookId))
